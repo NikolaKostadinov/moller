@@ -6,7 +6,7 @@
 
 #define ERROR_CONST 1.2e+07
 
-template <class T, typename E>                      // `E` could be `float` or `double` 
+template <class T, typename E>                            // `E` could be `float` or `double` 
 class GeneratorError : public Generator<T>
 {
     public:
