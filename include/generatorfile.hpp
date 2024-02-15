@@ -5,7 +5,7 @@
 
 #define DEFAULT_X_HEADER "X"
 #define DEFAULT_Y_HEADER "Y"
-#define DEFAULT_DELIM   "\t"
+#define DEFAULT_DELIM    "\t"
 
 template <class T>
 class GeneratorFile : public Generator<T>

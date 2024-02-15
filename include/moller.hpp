@@ -7,8 +7,9 @@
 #define LIMIT_CLASSICAL    0x01
 #define LIMIT_ULTRA        0x02
 
-#define DEFAULT_MASS       1.00000000
-#define DEFAULT_COUPLING   0.30282212
+#define DEFAULT_MASS       1.00000000d
+#define DEFAULT_COUPLING   0.30282212d
+#define CONVERT_FACTOR     2.56819000d
 #define DEFAULT_LIMIT      LIMIT_RELATIVISTIC
 
 #define MOLLER_PATH        "./data/moller.dat"

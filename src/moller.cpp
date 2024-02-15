@@ -26,7 +26,7 @@ double Moller::function(double _input_) const
     double p4      = _momentum*_momentum*_momentum*_momentum;
     double m4      = _mass    *_mass    *_mass    *_mass;
 
-    double factor  = (alpha * alpha)/(ecm2 * p4 * sin2 * sin2);
+    double factor  = CONVERT_FACTOR*(alpha * alpha)/(ecm2 * p4 * sin2 * sin2);
 
     switch (_limit)
     {
