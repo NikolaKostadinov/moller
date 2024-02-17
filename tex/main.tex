@@ -3,8 +3,10 @@
 \usepackage{tikz}
 \usepackage{lipsum}
 \usetikzlibrary{patterns,plotmarks}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{slashed}
 
-\title{Moller Scattering}
+\title{Møller Scattering}
 \author{Nikola Kostadinov}
 \date{\today}
 
@@ -12,10 +14,7 @@
 
   \input{titlepage}
 
-  \lipsum[1-3]
-
-  \input{moller}
-
-  \lipsum[1-3]
+  \input{sections/theory}
+  \input{sections/experiment}
 
 \end{document}

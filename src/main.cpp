@@ -18,7 +18,7 @@
 #define GRAPH_LABEL     "Differential Cross Section;"           \
                         "\\theta\\,[rad];"                      \
                         "\\frac{d^2\\sigma}{d\\Omega^2}\\,[mb]"         // graph title \ x label \ y label
-#define MOLLER_TEX_PATH "./tex/moller.tex"                              // path to `.tex` file
+#define MOLLER_TEX_PATH "./tex/diagrams/moller-cross-section.tex"       // path to `.tex` file
 
 int main(int argc, char** argv)
 {
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     TCanvas*      canvas = new TCanvas("canvas", CANVAS_TITLE, CANVAS_W, CANVAS_H);
     TGraphErrors* graph  = new TGraphErrors(N, to_x, to_y, NULL, to_e);
     
-    std::cout << "DATA IMPORTED\n";
+    std::cout << "DATA IMPORTED" << std::endl;
 
     graph ->SetTitle(GRAPH_LABEL);
     graph ->SetMarkerStyle(21);
@@ -64,15 +64,15 @@ int main(int argc, char** argv)
     canvas->Modified();
     canvas->Update();
 
-    std::cout << "CANVAS UPDATED\n";
+    std::cout << "CANVAS UPDATED" << std::endl;
 
     gPad->Print(MOLLER_TEX_PATH);                                       // generate `.tex` file
 
-    std::cout << "TEX FILE GENERATED\n";
+    std::cout << "TEX FILE GENERATED" << std::endl;
 
     TRootCanvas *root = (TRootCanvas*) canvas->GetCanvasImp();
 
-    std::cout << "CONNECTING\n";
+    std::cout << "CONNECTING" << std::endl;
 
     root->Connect(
         "CloseWindow()",
@@ -81,9 +81,9 @@ int main(int argc, char** argv)
         "Terminate()"
     );
 
-    std::cout << "RUNNING\n";
+    std::cout << "RUNNING" << std::endl;
 
-    app ->Run();
+    app->Run();
 
     return 0;
 }
