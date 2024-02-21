@@ -8,6 +8,12 @@
 #define DEFAULT_E_HEADER "E"
 #define DEFAULT_DELIM    "\t"
 
+//
+// class `GeneratorErrorFile<T, E>`
+//
+// `Generator<T>` -> `GeneratorFile<T>` -> `GeneratorErrorFile<T, E>`
+//
+
 template <class T, typename E>
 class GeneratorErrorFile : public GeneratorError<T, E>
 {

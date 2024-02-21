@@ -7,6 +7,12 @@
 #define DEFAULT_Y_HEADER "Y"
 #define DEFAULT_DELIM    "\t"
 
+//
+// class `GeneratorFile<T>`
+//
+// `Generator<T>` -> `GeneratorFile<T>`
+//
+
 template <class T>
 class GeneratorFile : public Generator<T>
 {

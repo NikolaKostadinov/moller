@@ -8,8 +8,8 @@
 #include "TError.h"
 
 #define N               100u                                            // number of samples
-#define P               6.0d                                            // particle CM momentum
-#define MASS            0.5d                                            // particle invariant mass
+#define P               1.0d                                            // particle CM momentum
+#define MASS            1.0d                                            // particle invariant mass
 #define COUPLING        0.30282212d                                     // coupling constant
 #define LIMIT           LIMIT_RELATIVISTIC                              // limit of calculation
 #define CANVAS_W        720u                                            // width of canvas

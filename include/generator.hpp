@@ -3,12 +3,19 @@
 #include <cstddef>
 
 // 
-// class `Generator`
+// class `Generator<T>`
 //
-// A `Generator` generates a pointer to
-// values which are the result of an given
-// function acting on a given pointer.
-// This class acts as an interface.
+// A `Generator<T>` generates a pointer to
+// values of type/class `T` which are the
+// result of an given function (`T function(T) const`)
+// acting on a input pointer. This class acts
+// as an interface.
+//
+// To inherit this class one must override
+// the virtual method `T finction(T) const`. To
+// generate the output of the function to a new
+// pointer `T*` apply the predefined method
+// `T* generate(T*) const`.
 //
 
 template <class T>
