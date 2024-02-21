@@ -1,6 +1,12 @@
-\feynmandiagram [vertical = a to b] {
-  {i1, i2}
-  -- [plain] a
-  -- [boson] b
-  -- [plain] {f1, f2},
-};
+\begin{figure}
+  \begin{align*}
+    i\mathcal{M}_{Moller} =
+    \feynmandiagram [inline=(b.base), vertical = a to b, layered layout] {
+      {i1[particle=\(e^{-}\)], i2[particle=\(e^{-}\)]}
+      -- [plain] a
+      -- [boson, edge label=\(\gamma\)] b
+      -- [plain] {f1[particle=\(e^{-}\)], f2[particle=\(e^{-}\)]},
+    };
+    + \textrm{u-channel}
+  \end{align*}
+\end{figure}

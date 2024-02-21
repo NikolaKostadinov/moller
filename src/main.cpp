@@ -6,12 +6,14 @@
 #include "TRootCanvas.h"
 #include "TGraphErrors.h"
 #include "TError.h"
+#include "TAxis.h"
 
 #define N               100u                                            // number of samples
 #define P               1.0d                                            // particle CM momentum
 #define MASS            1.0d                                            // particle invariant mass
 #define COUPLING        0.30282212d                                     // coupling constant
 #define LIMIT           LIMIT_RELATIVISTIC                              // limit of calculation
+#define EXCLUSION_ARC   0.6d                                            // arc of exclusipn
 #define CANVAS_W        720u                                            // width of canvas
 #define CANVAS_H        720u                                            // height of canvas
 #define CANVAS_TITLE    "Moller Scattering"                             // title of canvas
@@ -22,15 +24,15 @@
 
 int main(int argc, char** argv)
 {
-    double start    = 0.0;
-    double end      = 2*M_PI;
+    double start    =        EXCLUSION_ARC;
+    double end      = M_PI - EXCLUSION_ARC;
 
     double* to_theta = new double[N];
 
     for (unsigned int i = 0; i < N; i++)                                // define theta (angle) samples
         *(to_theta + i) = start + i*(end - start)/(N - 1);              // theta(n+1) = theta(n) + delta_theta
     
-    Moller scattering = Moller(N, P, MASS, COUPLING, LIMIT);
+    Moller scattering = Moller(N, P, MASS, COUPLING, LIMIT, UNIT_RAD);
     scattering.generateFile(to_theta);
 
     std::cout << "DATA FILE GENERATED\n";
@@ -61,6 +63,7 @@ int main(int argc, char** argv)
     graph ->SetMarkerStyle(21);
     graph ->SetMarkerColor(4);
     graph ->Draw("ALP");
+    graph ->GetXaxis()->SetLimits(start, end);
     canvas->Modified();
     canvas->Update();
 
