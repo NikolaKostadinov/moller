@@ -13,7 +13,7 @@
 #define MASS            1.0d                                            // particle invariant mass
 #define COUPLING        0.30282212d                                     // coupling constant
 #define LIMIT           LIMIT_RELATIVISTIC                              // limit of calculation
-#define EXCLUSION_ARC   0.6d                                            // arc of exclusipn
+#define EXCLUSION_ARC   0.6d                                            // arc of exclusion
 #define CANVAS_W        720u                                            // width of canvas
 #define CANVAS_H        720u                                            // height of canvas
 #define CANVAS_TITLE    "Moller Scattering"                             // title of canvas
