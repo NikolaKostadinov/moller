@@ -8,19 +8,20 @@
 #include "TError.h"
 #include "TAxis.h"
 
-#define N               100u                                            // number of samples
-#define P               1.0                                             // particle CM momentum
-#define MASS            1.0                                             // particle invariant mass
-#define COUPLING        0.30282212                                      // coupling constant
-#define LIMIT           LIMIT_RELATIVISTIC                              // limit of calculation
-#define EXCLUSION_ARC   0.6                                             // arc of exclusion
-#define CANVAS_W        720u                                            // width of canvas
-#define CANVAS_H        720u                                            // height of canvas
-#define CANVAS_TITLE    "Moller Scattering"                             // title of canvas
-#define GRAPH_LABEL     "Differential Cross Section;"           \
-                        "\\theta\\,[rad];"                      \
-                        "\\frac{d^2\\sigma}{d\\Omega^2}\\,[mb]"         // graph title \ x label \ y label
-#define MOLLER_TEX_PATH "./tex/diagrams/moller-cross-section.tex"       // path to `.tex` file
+#define N                   100u                                            // number of samples
+#define P                   1.0                                             // electron CM momentum
+#define MASS                1.0                                             // electron invariant mass
+#define COUPLING            0.30282212                                      // coupling constant
+#define LIMIT               LIMIT_RELATIVISTIC                              // limit of calculation
+#define EXCLUSION_ARC       0.6                                             // arc of exclusion
+#define CANVAS_W            720u                                            // width of canvas
+#define CANVAS_H            720u                                            // height of canvas
+#define CANVAS_TITLE        "Moller Scattering"                             // title of canvas
+#define GRAPH_LABEL         "Differential Cross Section;"           \
+                            "\\theta\\,[rad];"                      \
+                            "\\frac{d^2\\sigma}{d\\Omega^2}\\,[mb]"         // graph title \ x label \ y label
+#define MOLLER_DAT_PATH     "./data/moller.dat"                             // path to `.dat` file
+#define MOLLER_TEX_PATH     "./tex/diagrams/moller-cross-section.tex"       // path to `.tex` file
 
 int main(int argc, char** argv)
 {
@@ -32,7 +33,7 @@ int main(int argc, char** argv)
     for (unsigned int i = 0; i < N; i++)                                // define theta (angle) samples
         *(to_theta + i) = start + i*(end - start)/(N - 1);              // theta(n+1) = theta(n) + delta_theta
     
-    Moller scattering = Moller(N, P, MASS, COUPLING, LIMIT, UNIT_RAD);
+    Moller scattering = Moller( N, MOLLER_DAT_PATH, P, MASS, COUPLING, LIMIT, UNIT_RAD);
     scattering.generateFile(to_theta);
 
     std::cout << "DATA FILE GENERATED\n";
@@ -42,7 +43,7 @@ int main(int argc, char** argv)
     double* to_e = new double [N];                                      // absolute error of `*to_y`
 
     importDataFromTo(                                                   // helper function
-        MOLLER_PATH,                                                    // from `../include/read.hpp`
+        MOLLER_DAT_PATH,                                                // from `../include/read.hpp`
         to_x,                                                           // 
         to_y,                                                           // it imports the data from the `.dat` file
         to_e                                                            // to the pointers

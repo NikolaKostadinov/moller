@@ -2,8 +2,8 @@
 
 #define SQ(X) (X*X)
 
-Moller::Moller(size_t _dataSize_, double _momentum_, double _mass_, double _coupling_, char _limit_, char _angle_unit_) : 
-    GeneratorErrorFile<double>(_dataSize_, MOLLER_PATH, MOLLER_X_HEADER, MOLLER_Y_HEADER, MOLLER_E_HEADER),
+Moller::Moller(size_t _dataSize_, const char* _path_, double _momentum_, double _mass_, double _coupling_, char _limit_, char _angle_unit_) : 
+    GeneratorErrorFile<double>(_dataSize_, _path_, MOLLER_X_HEADER, MOLLER_Y_HEADER, MOLLER_E_HEADER),
     _momentum(_momentum_),
     _mass(_mass_),
     _coupling(_coupling_),

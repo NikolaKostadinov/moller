@@ -17,24 +17,24 @@
 #define DEFAULT_LIMIT      LIMIT_RELATIVISTIC
 #define DEFAULT_ANGLE_UNIT UNIT_RAD
 
-#define CONVERT_FACTOR     2.56819000
+#define MOLLER_X_HEADER "THETA"
+#define MOLLER_Y_HEADER "SIGMA"
+#define MOLLER_E_HEADER "ERROR"
 
-#define MOLLER_PATH        "./data/moller.dat"
-#define MOLLER_X_HEADER    "THETA"
-#define MOLLER_Y_HEADER    "SIGMA"
-#define MOLLER_E_HEADER    "ERROR"
+#define CONVERT_FACTOR     2.56819000
 
 class Moller : public GeneratorErrorFile<double>
 {
     public:
 
         Moller(
-            size_t _dataSize_,
-            double _momentum_,
-            double _mass_       = DEFAULT_MASS,
-            double _coupling_   = DEFAULT_COUPLING,
-            char   _limit_      = DEFAULT_LIMIT,
-            char   _angle_unit_ = DEFAULT_ANGLE_UNIT
+            size_t      _dataSize_,
+            const char* _path_,
+            double      _momentum_,
+            double      _mass_       = DEFAULT_MASS,
+            double      _coupling_   = DEFAULT_COUPLING,
+            char        _limit_      = DEFAULT_LIMIT,
+            char        _angle_unit_ = DEFAULT_ANGLE_UNIT
         );
 
         double      function(double _input_) const override;
