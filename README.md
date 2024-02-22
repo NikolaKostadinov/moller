@@ -33,6 +33,8 @@ $ make pdf
 
 > Note: `make pdf` uses `LuaLaTeX`
 
+The `.pdf` is build in `./tex/build` directory.
+
 ## Parameters
 
 The program has parameters that could be changed. They are defined in `./src/main.cpp`. The default parameters are given:
@@ -54,5 +56,5 @@ The program has parameters that could be changed. They are defined in `./src/mai
 #define MOLLER_TEX_PATH     "./tex/diagrams/moller-cross-section.tex"       // path to `.tex` file
 ```
 
-> The default value `GRAPH_LABEL` literaly means "Differential Cross Section; $\theta\,[rad]$; $\frac{d^2\sigma}{d\Omega^2}\,[mb]$"
+> The default value `GRAPH_LABEL` literaly means "Differential Cross Section; $\theta\,[\textrm{rad}]$; $\frac{d^2\sigma}{d\Omega^2}\,[\textrm{mb}]$"
 
