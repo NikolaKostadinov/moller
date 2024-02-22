@@ -1,34 +1,53 @@
 #include "../include/generatorerror.hpp"
 
-template <class T, typename E>
-GeneratorError<T, E>::GeneratorError(size_t _data_size_) : Generator<T>(_data_size_)
+template <class T>
+GeneratorError<T>::GeneratorError(size_t _data_size_) : Generator<T>(_data_size_)
 {
 
 }
 
-template <class T, typename E>
-E GeneratorError<T, E>::errorFunction(T _input_) const
+template <class T>
+T GeneratorError<T>::errorFunction(T _input_) const
 {
-    std::srand(time(0));
-    return (E)(ERROR_CONST/rand());
+    return _input_;
 }
 
-template <class T, typename E>
-E* GeneratorError<T, E>::generateError(T* _to_data_) const
+template <class T>
+T* GeneratorError<T>::generate(T* _to_input_) const
 {
-    E* to_new_errors = new E[Generator<T>::_data_size];
-    for (unsigned int i = 0; i < Generator<T>::_data_size; i++)
+    T* to_output = new T[Generator<T>::_data_size];
+    generateTo(_to_input_, to_output);
+    return to_output;
+}
+
+template <class T>
+void GeneratorError<T>::generateTo(T* _to_input_, T* _to_output_) const
+{
+    for (unsigned int i = 0u; i < Generator<T>::_data_size; i++)
     {
-        T this_value = *(_to_data_ + i);
-        E new_error  = errorFunction(this_value);
+        std::random_device rand_dev;
+        std::uniform_real_distribution<double> dist(-1.0, +1.0);
+        double rel_err = dist(rand_dev);
+        
+        T this_value = *(_to_input_ + i);
+        T new_value  = this->function(this_value) + rel_err*errorFunction(this_value);
+        *(_to_output_ + i) = new_value;
+    }
+}
+
+template <class T>
+T* GeneratorError<T>::generateError(T* _to_input_) const
+{
+    T* to_new_errors = new T[Generator<T>::_data_size];
+    for (unsigned int i = 0u; i < Generator<T>::_data_size; i++)
+    {
+        T this_value = *(_to_input_ + i);
+        T new_error  = errorFunction(this_value);
         *(to_new_errors + i) = new_error;
     }
     return to_new_errors;
 }
 
-template class GeneratorError<int,    float >;
-template class GeneratorError<float,  float >;
-template class GeneratorError<double, float >;
-template class GeneratorError<int,    double>;
-template class GeneratorError<float,  double>;
-template class GeneratorError<double, double>;
+template class GeneratorError<int   >;
+template class GeneratorError<float >;
+template class GeneratorError<double>;

@@ -9,13 +9,13 @@
 #define DEFAULT_DELIM    "\t"
 
 //
-// class `GeneratorErrorFile<T, E>`
+// class `GeneratorErrorFile<T>`
 //
-// `Generator<T>` -> `GeneratorFile<T>` -> `GeneratorErrorFile<T, E>`
+// `Generator<T>` -> `GeneratorError<T>` -> `GeneratorErrorFile<T>`
 //
 
-template <class T, typename E>
-class GeneratorErrorFile : public GeneratorError<T, E>
+template <class T>
+class GeneratorErrorFile : public GeneratorError<T>
 {
     public:
 
@@ -28,7 +28,7 @@ class GeneratorErrorFile : public GeneratorError<T, E>
             const char* _delim_    = DEFAULT_DELIM
         );
 
-        void generateFile(T* _to_data_) const;
+        void generateFile(T* _to_input_) const;
 
     protected:
 

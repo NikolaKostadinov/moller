@@ -26,7 +26,7 @@ class GeneratorFile : public Generator<T>
             const char* _delim_    = DEFAULT_DELIM
         );
 
-        void generateFile(T* _to_data_) const;
+        void generateFile(T* _to_input_) const;
 
     protected:
 

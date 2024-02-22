@@ -3,7 +3,7 @@
 #define SQ(X) (X*X)
 
 Moller::Moller(size_t _dataSize_, double _momentum_, double _mass_, double _coupling_, char _limit_, char _angle_unit_) : 
-    GeneratorErrorFile<double, double>(_dataSize_, MOLLER_PATH, MOLLER_X_HEADER, MOLLER_Y_HEADER, MOLLER_E_HEADER),
+    GeneratorErrorFile<double>(_dataSize_, MOLLER_PATH, MOLLER_X_HEADER, MOLLER_Y_HEADER, MOLLER_E_HEADER),
     _momentum(_momentum_),
     _mass(_mass_),
     _coupling(_coupling_),
@@ -50,5 +50,5 @@ double Moller::function(double _input_) const
 
 double Moller::errorFunction(double _input_) const
 {
-    return .25;
+    return .05*function(_input_);
 }

@@ -25,22 +25,21 @@ T Generator<T>::function(T _input_) const
 }
 
 template <class T>
-T* Generator<T>::generate(T* _to_data_) const
+T* Generator<T>::generate(T* _to_input_) const
 {
-    T* to_result = new T[_data_size];
-    generateTo(_to_data_, to_result);
-    return to_result;
+    T* to_output = new T[_data_size];
+    generateTo(_to_input_, to_output);
+    return to_output;
 }
 
 template <class T>
-void Generator<T>::generateTo(T* _to_data_, T* _to_result_) const
+void Generator<T>::generateTo(T* _to_input_, T* _to_output_) const
 {
-    T* to_new_data = new T[_data_size];
     for (unsigned int i = 0; i < _data_size; i++)
     {
-        T this_value = *(_to_data_ + i);
+        T this_value = *(_to_input_ + i);
         T new_value  = function(this_value);
-        *(_to_result_ + i) = new_value;
+        *(_to_output_ + i) = new_value;
     }
 }
 

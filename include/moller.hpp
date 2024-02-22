@@ -12,19 +12,19 @@
 #define UNIT_GON           0x13
 #define UNIT_MIL           0x14
 
-#define DEFAULT_MASS       1.00000000d
-#define DEFAULT_COUPLING   0.30282212d
+#define DEFAULT_MASS       1.00000000
+#define DEFAULT_COUPLING   0.30282212
 #define DEFAULT_LIMIT      LIMIT_RELATIVISTIC
 #define DEFAULT_ANGLE_UNIT UNIT_RAD
 
-#define CONVERT_FACTOR     2.56819000d
+#define CONVERT_FACTOR     2.56819000
 
 #define MOLLER_PATH        "./data/moller.dat"
 #define MOLLER_X_HEADER    "THETA"
 #define MOLLER_Y_HEADER    "SIGMA"
 #define MOLLER_E_HEADER    "ERROR"
 
-class Moller : public GeneratorErrorFile<double, double>
+class Moller : public GeneratorErrorFile<double>
 {
     public:
 

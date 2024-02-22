@@ -9,11 +9,11 @@
 #include "TAxis.h"
 
 #define N               100u                                            // number of samples
-#define P               1.0d                                            // particle CM momentum
-#define MASS            1.0d                                            // particle invariant mass
-#define COUPLING        0.30282212d                                     // coupling constant
+#define P               1.0                                             // particle CM momentum
+#define MASS            1.0                                             // particle invariant mass
+#define COUPLING        0.30282212                                      // coupling constant
 #define LIMIT           LIMIT_RELATIVISTIC                              // limit of calculation
-#define EXCLUSION_ARC   0.6d                                            // arc of exclusion
+#define EXCLUSION_ARC   0.6                                             // arc of exclusion
 #define CANVAS_W        720u                                            // width of canvas
 #define CANVAS_H        720u                                            // height of canvas
 #define CANVAS_TITLE    "Moller Scattering"                             // title of canvas
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
     
     double* to_x = new double [N];                                      // `to_x` matches with `to_theta` but redefined for convenience
     double* to_y = new double [N];                                      // differential cross section
-    double* to_e = new double [N];                                      // relative error of `*to_y`
+    double* to_e = new double [N];                                      // absolute error of `*to_y`
 
     importDataFromTo(                                                   // helper function
         MOLLER_PATH,                                                    // from `../include/read.hpp`
@@ -47,9 +47,6 @@ int main(int argc, char** argv)
         to_y,                                                           // it imports the data from the `.dat` file
         to_e                                                            // to the pointers
     );                                                                  // 
-
-    for (unsigned int i = 0; i < N; i++)                                // convert to absolute error:
-        *(to_e + i) *= *(to_y + i);                                     // abs_err = rel_err * val
 
     gErrorIgnoreLevel = kWarning;                                       // block ROOT messages
 
