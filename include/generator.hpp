@@ -28,8 +28,8 @@ class Generator
         size_t    getSize()                                 const;
         void      setSize(size_t _data_size_)                    ;
 
-        virtual T function  (T     _input_)                 const;  // default: identity function
-        T*        generate  (T* _to_input_)                 const;
+        virtual T function(  T     _input_)                 const;  // default: identity function
+        T*        generate(  T* _to_input_)                 const;
         void      generateTo(T* _to_input_, T* _to_output_) const;
 
     protected:

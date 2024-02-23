@@ -30,26 +30,27 @@ int main(int argc, char** argv)
 
     double* to_theta = new double[N];
 
-    for (unsigned int i = 0; i < N; i++)                                // define theta (angle) samples
-        *(to_theta + i) = start + i*(end - start)/(N - 1);              // theta(n+1) = theta(n) + delta_theta
+    for (unsigned int i = 0u; i < N; i++)                                   // define theta (angle) samples
+        *(to_theta + i) = start + i*(end - start)/(N - 1);                  // theta(n+1) = theta(n) + delta_theta
     
-    Moller scattering = Moller( N, MOLLER_DAT_PATH, P, MASS, COUPLING, LIMIT, UNIT_RAD);
+    Moller scattering = Moller(N, MOLLER_DAT_PATH, P, MASS, COUPLING, LIMIT, UNIT_RAD);
     scattering.generateFile(to_theta);
 
-    std::cout << "DATA FILE GENERATED\n";
+    std::cout << "DATA FILE GENERATED" << std::endl;
     
-    double* to_x = new double [N];                                      // `to_x` matches with `to_theta` but redefined for convenience
-    double* to_y = new double [N];                                      // differential cross section
-    double* to_e = new double [N];                                      // absolute error of `*to_y`
 
-    importDataFromTo(                                                   // helper function
-        MOLLER_DAT_PATH,                                                // from `../include/read.hpp`
-        to_x,                                                           // 
-        to_y,                                                           // it imports the data from the `.dat` file
-        to_e                                                            // to the pointers
-    );                                                                  // 
+    double* to_x = new double [N];                                          // `to_x` matches with `to_theta` but redefined for convenience
+    double* to_y = new double [N];                                          // points to the differential cross section values
+    double* to_e = new double [N];                                          // points to the absolute error of `*to_y`
 
-    gErrorIgnoreLevel = kWarning;                                       // block ROOT messages
+    importDataFromTo(                                                       // helper function
+        MOLLER_DAT_PATH,                                                    // from `../include/read.hpp`
+        to_x,                                                               // 
+        to_y,                                                               // it imports the data from the `.dat` file
+        to_e                                                                // to the pointers
+    );                                                                      // 
+
+    gErrorIgnoreLevel = kWarning;                                           // block ROOT messages
 
     TApplication* app    = new TApplication("app", &argc, argv);
     TCanvas*      canvas = new TCanvas("canvas", CANVAS_TITLE, CANVAS_W, CANVAS_H);
@@ -67,7 +68,7 @@ int main(int argc, char** argv)
 
     std::cout << "CANVAS UPDATED" << std::endl;
 
-    gPad->Print(MOLLER_TEX_PATH);                                       // generate `.tex` file
+    gPad->Print(MOLLER_TEX_PATH);                                           // generate `.tex` file
 
     std::cout << "TEX FILE GENERATED" << std::endl;
 
